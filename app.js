@@ -12,21 +12,31 @@ const fieldWidth = 300;//width of the field that corresponds to html element par
 const linex1 = 75;//x coordinates of the first car lane
 const linex2 = 150;//x coordinates of the second car lane
 const linex3 = 225;//x coordinates of the third car lane
-let counter = 0;
+let counter = 0;//sets a counter to run road lane animation
 var line1 = document.getElementById("game");
 var ctx = line1.getContext("2d");
-const userRangeLeft = 19;
-const userRangeRight = 281;
-const step = 5;
+const userRangeLeft = 19;//sets range for user movement
+const userRangeRight = 281;//set range for user movement
+const step = 20;// sets step for user movement
+let carStep = 5;// sets step for oncoming cars
+let carOneCounter = 0;// sets counter to move oncoming car 1
+const carRange = 600;// set visible range for cars 
+let lane = 38;
+const laneDefault = 38;
+const laneGap = 75;
+let carOne;
+let gameStatus = 'runnig';
+
 
 //Defining parameters for Cars
 class Car {
     constructor(centerX, centerY,color) {
-        this.x = centerX-18;
-        this.y = centerY -18;
-        this.width = 38;
-        this.height = 50;
+        this.x = centerX-20;
+        this.y = centerY -15;
+        this.width = 40;
+        this.height = 30;
         this.color = color;
+        this.crazyDiver = false
      }render(){
         ctx.fillStyle=this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height)
@@ -34,49 +44,32 @@ class Car {
 }    
 
 //Let's make a user car
-const userCar = new Car(150,264,"#BADA55");
+const userCar = new Car(150,274,"#BADA55");
 
 
 //Enabling user car to move on screen
 let isPressed ={}; 
-      
-// element.onkeydown = function (e) { 
-//     if (!isPressed) { 
-//         isPressed = true; 
-//         console.log('Key Fired!'); 
-//     } 
-// }; 
-  
-// element.onkeyup = function (e) { 
-//     isPressed = false; 
 
-// } 
 function onKeypress (e) {
     isPressed[e.key] = true;
-
              if(e.key==='a'){
-              
                  if( userCar.x > 18 ){
                      userCar.x -= step;
                  }
-                
-            }else if(e.key==='d'){
-               
+              }else if(e.key==='d'){
                 if(userCar.x < 248){
-                    console.log(userCar.x)
                     userCar.x += step;
-                }   
-            }
-        
-    
+        }   
+    } 
 }
 
 function onKeyUp(e) { 
     isPressed[e.key] = false;
 }
- 
 document.addEventListener('keydown', onKeypress);
 document.addEventListener('keyup', onKeyUp);
+
+
 
  
 
@@ -143,16 +136,58 @@ function background(){
     }
 }
 
+//randomizing oncoming car lanes
+function pickAlane () {
+    let index = Math.floor(Math.random() * 4);
+    lane = laneDefault + (laneGap * index);
+};
+// creating a second crazy driver that you have to pass to earn points
+function crazyDriver2 () {
+    let crazyIndex = Math.floor(Math.random() * 5);
+    return crazyIndex;
+    }
 
+ 
 
-
-
+function detectCrash() {
+    if(userCar.x < carOne.x + carOne.width 
+   && userCar.x + userCar.width > carOne.x
+   && userCar.y < carOne.y +carOne.height
+   && userCar.y + userCar.height > carOne.y){
+    gameStatus= 'gameOver';
+    console.log('Crash!!!');
+;}    
+}
 
 
 function rePaint(){
  ctx.clearRect(0, 0, fieldWidth, fieldHeight)
- background()
+
  userCar.render()
+ if(gameStatus==="runnig"){
+    background()
+    if(carOneCounter < carRange){
+        carMove();    
+       }else{
+        carOneCounter = 0;
+        pickAlane();
+        return carOneCounter;
+    }
+ }else{
+     carOne.render();
+ }
+function carMove(){
+    carOne = new Car(lane,(carOneCounter),"#FF0000"); 
+        carOne.render() 
+        carOneCounter = carOneCounter + carStep
+        return carOneCounter;
+   };
+   
+
+
+ 
+ detectCrash();
+
 }
 
-setInterval(rePaint, 1000/40)
+setInterval(rePaint, 1000/80)
