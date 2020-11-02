@@ -1,0 +1,17 @@
+canvas {
+    /* background-image: url('../img/stone.png'); */
+    /* background-repeat: repeat; */
+    background-color: #222;
+    width: 100%;
+    height: auto;
+  }
+
+  h1 {
+      text-align: center;
+  }
+
+  .container {
+    max-width: 30em;
+    margin: auto;
+  }
+
