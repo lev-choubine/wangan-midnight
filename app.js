@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function(){ 
+
 ////////////Setting up a square canvas//////////
 
 const game = document.querySelector('#game');
@@ -18,45 +20,49 @@ var ctx = line1.getContext("2d");
 const userRangeLeft = 19;//sets range for user movement
 const userRangeRight = 281;//set range for user movement
 const step = 20;// sets step for user movement
-let carStep = 5;// sets step for oncoming cars
+let carStep = 4;// sets step for oncoming cars
+const carStepDefault = 4;
 let carOneCounter = 0;// sets counter to move oncoming car 1
 const carRange = 600;// set visible range for cars 
 let lane = 38;
 const laneDefault = 38;
 const laneGap = 75;
 let carOne;
-let gameStatus = 'runnig';
+let gameStatus = 'running';
+let crazyIndex;
+let carOneColor = "#FF0000";
+const carOneColorDefault= "#FF0000";
+let crazyStatus = false;
+
+//////////////
+
 
 
 //Defining parameters for Cars
 class Car {
-    constructor(centerX, centerY,color) {
+    constructor(centerX, centerY,color, status) {
         this.x = centerX-20;
         this.y = centerY -15;
         this.width = 40;
         this.height = 30;
         this.color = color;
-        this.crazyDiver = false
+        this.crazyDriver = status;
      }render(){
         ctx.fillStyle=this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height)
      }
-}    
+};  
 
-//Let's make a user car
-const userCar = new Car(150,274,"#BADA55");
-
-
-//Enabling user car to move on screen
-let isPressed ={}; 
-
+let isPressed ={};
 function onKeypress (e) {
     isPressed[e.key] = true;
              if(e.key==='a'){
+              
                  if( userCar.x > 18 ){
                      userCar.x -= step;
                  }
               }else if(e.key==='d'){
+           
                 if(userCar.x < 248){
                     userCar.x += step;
         }   
@@ -65,9 +71,13 @@ function onKeypress (e) {
 
 function onKeyUp(e) { 
     isPressed[e.key] = false;
-}
-document.addEventListener('keydown', onKeypress);
-document.addEventListener('keyup', onKeyUp);
+};
+
+    document.addEventListener('keydown', onKeypress);
+    document.addEventListener('keyup', onKeyUp);
+
+//Let's make a user car
+const userCar = new Car(150,274,"#BADA55", crazyStatus);
 
 
 
@@ -140,11 +150,19 @@ function background(){
 function pickAlane () {
     let index = Math.floor(Math.random() * 4);
     lane = laneDefault + (laneGap * index);
+    crazyDriver2()
+    
 };
 // creating a second crazy driver that you have to pass to earn points
 function crazyDriver2 () {
-    let crazyIndex = Math.floor(Math.random() * 5);
-    return crazyIndex;
+    crazyIndex = Math.floor(Math.random() * 5);
+    if (crazyIndex === 4){
+        carStep = Math.floor(carStep /2 );
+        carOneColor = '#00FFFF'; 
+        crazyStatus = true;
+    }
+
+    
     }
 
  
@@ -155,31 +173,47 @@ function detectCrash() {
    && userCar.y < carOne.y +carOne.height
    && userCar.y + userCar.height > carOne.y){
     gameStatus= 'gameOver';
-    console.log('Crash!!!');
-;}    
+    return gameStatus;
+}    
 }
 
 
 function rePaint(){
  ctx.clearRect(0, 0, fieldWidth, fieldHeight)
 
- userCar.render()
- if(gameStatus==="runnig"){
+
+ if(gameStatus==="running"){
+    userCar.render() 
     background()
     if(carOneCounter < carRange){
         carMove();    
        }else{
         carOneCounter = 0;
+        if(crazyStatus = true){
+            carOneColor = carOneColorDefault;
+            carStep =carStepDefault;
+            crazyStatus = false;
         pickAlane();
+        
+        }
         return carOneCounter;
     }
  }else{
+    userCar.render()
      carOne.render();
  }
 function carMove(){
-    carOne = new Car(lane,(carOneCounter),"#FF0000"); 
+  
+   
+    carOne = new Car(lane,(carOneCounter),carOneColor, crazyStatus); 
         carOne.render() 
         carOneCounter = carOneCounter + carStep
+        console.log(carOne.crazyDriver);
+        if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){
+
+            console.log('CRAZY DRIVER POINTS!!!!!');
+           
+        } 
         return carOneCounter;
    };
    
@@ -190,4 +224,10 @@ function carMove(){
 
 }
 
-setInterval(rePaint, 1000/80)
+setInterval(rePaint, 1000/80);
+
+
+
+
+//////////////////////////////////
+})
