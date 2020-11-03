@@ -33,6 +33,10 @@ let crazyIndex;
 let carOneColor = "#FF0000";
 const carOneColorDefault= "#FF0000";
 let crazyStatus = false;
+let pointAccumulator = 0;
+const setPointAmount = 600;
+const oneWin = 300;
+let gameWon = false;
 
 //////////////
 
@@ -181,8 +185,8 @@ function detectCrash() {
 function rePaint(){
  ctx.clearRect(0, 0, fieldWidth, fieldHeight)
 
-
- if(gameStatus==="running"){
+//////////CAR RANGE PROPERTIES HERE!!!///
+ if(gameStatus==="running"&&gameWon === false){
     userCar.render() 
     background()
     if(carOneCounter < carRange){
@@ -210,7 +214,12 @@ function carMove(){
         carOneCounter = carOneCounter + carStep
         console.log(carOne.crazyDriver);
         if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){
-
+            pointAccumulator = pointAccumulator + oneWin;
+            console.log(pointAccumulator);
+            if(pointAccumulator >= setPointAmount){
+                    gameWon = true;
+                    console.log('YOU WIN!!!!!!!!')
+            }
             console.log('CRAZY DRIVER POINTS!!!!!');
            
         } 
