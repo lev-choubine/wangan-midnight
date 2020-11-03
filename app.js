@@ -23,7 +23,7 @@ const step = 20;// sets step for user movement
 let carStep = 4;// sets step for oncoming cars
 const carStepDefault = 4;
 let carOneCounter = 0;// sets counter to move oncoming car 1
-const carRange = 600;// set visible range for cars 
+const carRange = 380;// set visible range for cars 
 let lane = 38;
 const laneDefault = 38;
 const laneGap = 75;
@@ -34,13 +34,19 @@ let carOneColor = "#FF0000";
 const carOneColorDefault= "#FF0000";
 let crazyStatus = false;
 let pointAccumulator = 0;
+const pointAccumulatorDefault = 0;
 const setPointAmount = 600;
 const oneWin = 300;
 let gameWon = false;
 
 //////////////
 
-
+document.addEventListener('keydown', function(e){
+    if(e.key==='q'){
+        gameStatus ='gameOver'
+    }
+    
+})
 
 //Defining parameters for Cars
 class Car {
@@ -164,6 +170,7 @@ function crazyDriver2 () {
         carStep = Math.floor(carStep /2 );
         carOneColor = '#00FFFF'; 
         crazyStatus = true;
+        gameStatus = 'running';
     }
 
     
@@ -186,30 +193,37 @@ function rePaint(){
  ctx.clearRect(0, 0, fieldWidth, fieldHeight)
 
 //////////CAR RANGE PROPERTIES HERE!!!///
+
  if(gameStatus==="running"&&gameWon === false){
     userCar.render() 
     background()
-    if(carOneCounter < carRange){
+    if(carOneCounter < carRange){//indicates that the car is still moving in the feild and hasn't comleted it's path
         carMove();    
-       }else{
+       }else{//resets conditions when the car reaches the end of
         carOneCounter = 0;
         if(crazyStatus = true){
             carOneColor = carOneColorDefault;
             carStep =carStepDefault;
             crazyStatus = false;
         pickAlane();
-        
         }
         return carOneCounter;
     }
  }else{
-    userCar.render()
-     carOne.render();
+    userCar.render() 
+     carOne.render()
+     document.addEventListener('keydown', function(e){
+         if(e.key==='s'){
+             console.log('Start GAME!!!!')
+             console.log(gameStatus);
+             startGame();
+         }
+         
+     })
  }
+//////////////////////////////////////////////////////////////////////
 function carMove(){
-  
-   
-    carOne = new Car(lane,(carOneCounter),carOneColor, crazyStatus); 
+   carOne = new Car(lane,(carOneCounter),carOneColor, crazyStatus); 
         carOne.render() 
         carOneCounter = carOneCounter + carStep
         console.log(carOne.crazyDriver);
@@ -218,6 +232,13 @@ function carMove(){
             console.log(pointAccumulator);
             if(pointAccumulator >= setPointAmount){
                     gameWon = true;
+                    document.addEventListener('keydown', function(e){
+                        if(e.key==='s'){
+                            console.log('Start GAME!!!!')
+                            console.log(gameStatus);
+                            gameWon = false;
+                            startGame();
+                        }})
                     console.log('YOU WIN!!!!!!!!')
             }
             console.log('CRAZY DRIVER POINTS!!!!!');
@@ -226,17 +247,20 @@ function carMove(){
         return carOneCounter;
    };
    
-
+/////////////////////////////////////////////////
 
  
  detectCrash();
 
+}//closes rePaint function!!
+function startGame(){
+    carOneColor = carOneColorDefault;
+            carOneCounter =0;
+            gameStatus="running";
+            carStep =carStepDefault;
+            crazyStatus = false;
+            pointAccumulator = pointAccumulatorDefault;
 }
-
 setInterval(rePaint, 1000/80);
-
-
-
-
 //////////////////////////////////
-})
+})//closes DOMcontentload event
