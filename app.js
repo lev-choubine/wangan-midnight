@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', function(){
     
     let isPressed ={};
     function onKeypress (e) {
-        isPressed[e.key] = true;
+        if(gameStatus==='running' ){
+            isPressed[e.key] = true;
                  if(e.key==='a'){
                   
                      if( userCar.x > 18 ){
@@ -91,12 +92,15 @@ document.addEventListener('DOMContentLoaded', function(){
                         userCar.x += step;
             }   
         } 
+
+        }
+        
     }
     
     function onKeyUp(e) { 
         isPressed[e.key] = false;
     };
-    
+     
         document.addEventListener('keydown', onKeypress);
         document.addEventListener('keyup', onKeyUp);
     
