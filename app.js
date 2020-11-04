@@ -43,13 +43,17 @@ document.addEventListener('DOMContentLoaded', function(){
     let crazyStatus2 = false;
     let pointAccumulator = 0;
     const pointAccumulatorDefault = 0;
-    const setPointAmount = 600;
+    const setPointAmount = 3000;
     const oneWin = 300;
     let gameWon = false;
     let car2enter = false;
     let car3enter = false;
     
     //////////////
+
+  
+           
+        
     
     document.addEventListener('keydown', function(e){
         if(e.key==='q'){
@@ -231,13 +235,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return gameStatus;
         } }   
     pickAlane2()
-                while(lane ===lane2){
-                    pickAlane2()
-                }
-                pickAlane3()
-                while(lane3 ===lane2||lane3===lane){
-                    pickAlane3()
-                }            
+                         
     
     function rePaint(){
      ctx.clearRect(0, 0, fieldWidth, fieldHeight)
@@ -261,6 +259,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 carStep =carStepDefault;
                 crazyStatus = false;
             pickAlane();
+            while(lane3 ===lane){
+                pickAlane()
+            }  
             
             }
             return carOneCounter;
@@ -271,6 +272,8 @@ document.addEventListener('DOMContentLoaded', function(){
          carOne.render()
          carTwo.render()
          carThree.render()
+        
+         
          document.addEventListener('keydown', function(e){
              if(e.key==='s'){
                  startGame();
@@ -309,9 +312,10 @@ function car3(){
         if (carThreeCounter > carRange){
             carThreeCounter = 0;
             pickAlane3()
-            while(lane3 ===lane2||lane3===lane){
-                console.log('LANES MATCH!!');
+            while(lane3 ===lane2||lane3 === lane){
+                
                 pickAlane3()
+                
             }  
 
                 }
@@ -336,8 +340,8 @@ function car3(){
                                
                                 console.log(gameStatus);
                                 gameWon = false;
-                                car2enter= false;
-                                car3enter= false;
+                                // car2enter= false;
+                                // car3enter= false;
                                 startGame();
                             }})
                         console.log('YOU WIN!!!!!!!!')
@@ -361,6 +365,9 @@ function car3(){
                 carOneCounter =0;
                 carTwoCounter =0;
                 carThreeCounter =0;
+                carOne = 0;
+                carTwo = 0;
+                carThree = 0;
                 gameStatus="running";
                 carStep =carStepDefault;
                 crazyStatus = false;
@@ -372,7 +379,7 @@ function car3(){
                 setTimeout(function(){ car3enter = true;carThreeCounter=0 }, 1200);
 
     }
-    setInterval(rePaint, 1000/80);
+    setInterval(rePaint, 1000/60);
     setTimeout(function(){ car2enter = true; }, 600);
     setTimeout(function(){ car3enter = true; }, 1200);
     //////////////////////////////////
