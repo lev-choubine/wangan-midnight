@@ -51,12 +51,19 @@ document.addEventListener('DOMContentLoaded', function(){
     let carImage = 'compcar1.jpg';
     const carImageDefault = 'compcar1.jpg'
     const otherCarImages = 'compcar1.jpg'
-
+    const crash ="url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f39715b0-a41b-401f-8482-85b57264b6f5/d27o4c6-7630c630-04e1-4161-8a51-b21e0f669c3f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZjM5NzE1YjAtYTQxYi00MDFmLTg0ODItODViNTcyNjRiNmY1XC9kMjdvNGM2LTc2MzBjNjMwLTA0ZTEtNDE2MS04YTUxLWIyMWUwZjY2OWMzZi5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.4r8Vo7zPBQ6pnAunFIgOjBmBa7MgghZygGZnprJqkrM')"
 
 
     
     //////////////
-    document.addEventListener('keydown', function(e){
+    document.getElementById('terebi').addEventListener('click', function(e){
+        startGame()
+        e.preventDefault();
+    })
+        
+    
+
+    document.addEventListener('click', function(e){
         if(e.key==='s'){
             startGame();
            
@@ -246,6 +253,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 && userCar.y < carOne.y +carOne.height
                 && userCar.y + userCar.height > carOne.y){
                  gameStatus= 'gameOver';
+                 document.getElementById('blob').innerText='ガシャンッ!';
+                 document.getElementById('terebi').style.backgroundImage=crash
+                 setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
                  return gameStatus;
              }  
         }
@@ -259,7 +269,9 @@ document.addEventListener('DOMContentLoaded', function(){
        && userCar.y < carTwo.y +carTwo.height
        && userCar.y + userCar.height > carTwo.y){
         gameStatus= 'gameOver';
-    
+        document.getElementById('blob').innerText='ガシャンッ!';
+        document.getElementById('terebi').style.backgroundImage=crash
+        setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
         return gameStatus;
     }    
     }
@@ -270,7 +282,10 @@ document.addEventListener('DOMContentLoaded', function(){
            && userCar.y < carThree.y +carThree.height
            && userCar.y + userCar.height > carThree.y){
             gameStatus= 'gameOver';
-           
+            document.getElementById('blob').innerText='ガシャンッ!';
+            document.getElementById('terebi').style.backgroundImage=crash
+            setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
+            
             return gameStatus;
         } }  
         
@@ -278,8 +293,12 @@ document.addEventListener('DOMContentLoaded', function(){
             if (carOne.crazyDriver === true){
                 if(userCar.x < carOne.x + carOne.width 
                     && userCar.x + userCar.width > carOne.x
-                    && userCar.y < carOne.y +carOne.height
-                    && userCar.y + userCar.height > carOne.y + carOne.height + 78){
+                    && userCar.y < carOne.y +carOne.height 
+                    && userCar.y > carOne.y +carOne.height + 38
+                    && userCar.y + userCar.height > carOne.y + carOne.height){
+                        document.getElementById('blob').innerText='ガシャンッ!!!!'; 
+                        document.getElementById('terebi').style.backgroundImage=crash
+                        setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
                      gameStatus= 'gameOver';
                     
                      return gameStatus;
@@ -309,6 +328,11 @@ document.addEventListener('DOMContentLoaded', function(){
                     
     
     function rePaint(){
+        if(gameStatus === "running"){
+          document.getElementById('blob').style.visibility='hidden';
+        }else{
+            document.getElementById('blob').style.visibility='visible';
+        }
      ctx.clearRect(0, 0, fieldWidth, fieldHeight)
      drawBgImg('road.jpeg')
     
@@ -458,7 +482,7 @@ function car3(){
                 pickAlane()
                 pickAlane2()
                 pickAlane3()
-
+                document.getElementById('terebi').style.backgroundImage="url('old_tv_empty_screen.png')"
     }
     setInterval(rePaint, 1000/60);
     // setTimeout(function(){ car2enter = true; }, 600);
