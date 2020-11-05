@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let carOne;
     let carTwo;
     let carThree;
-    let gameStatus = 'running';
+    let gameStatus = 'gameOver';
     let crazyIndex;
     let crazyIndex2;
     let carOneColor = "#FF0000";
@@ -48,9 +48,18 @@ document.addEventListener('DOMContentLoaded', function(){
     let gameWon = false;
     let car2enter = false;
     let car3enter = false;
+
+
+
     
     //////////////
-
+    document.addEventListener('keydown', function(e){
+        if(e.key==='s'){
+            startGame();
+           
+        }
+        
+    })
   
            
         
@@ -73,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function(){
             this.crazyDriver = status;
          }render(){
             ctx.fillStyle=this.color;
+            ctx.
             ctx.fillRect(this.x, this.y, this.width, this.height)
          }
     };  
@@ -106,6 +116,9 @@ document.addEventListener('DOMContentLoaded', function(){
     
     //Let's make a user car
     const userCar = new Car(150,274,"#BADA55", crazyStatus);
+    let userCarImage = new Image();
+    userCarImage.src = 'User-Car.jpg';
+      
     
     
     
@@ -125,35 +138,37 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     
     ////Compiling line variation for game background animation//////
+
+    function drawBgImg(img) {
+
+        let bgImg = new Image();
+        bgImg.src = img;
+      
+        ctx.drawImage(bgImg, 0, 0);
+       
+    }   
     
     function roadOption1(){
-        
-        drawLine(linex1,0,100);
-        drawLine(linex2,0,100);
-        drawLine(linex3,0,100);
-        drawLine(linex1,200,300);
-        drawLine(linex2,200,300);
-        drawLine(linex3,200,300); 
+        drawBgImg('road-3.jpg') 
+      
     }
      //roadOption1();
     
      function roadOption2(){
-        drawLine(linex1,0,100);
-        drawLine(linex2,0,100);
-        drawLine(linex3,0,100);
-        drawLine(linex1,100,200);
-        drawLine(linex2,100,200);
-        drawLine(linex3,100,200); 
+        drawBgImg('road-5.jpg')
     }
     // roadOption2()
     
     function roadOption3(){
-        drawLine(linex1,100,200);
-        drawLine(linex2,100,200);
-        drawLine(linex3,100,200);
-        drawLine(linex1,200,300);
-        drawLine(linex2,200,300);
-        drawLine(linex3,200,300); 
+        drawBgImg('road-2.jpg')
+    }
+
+    function roadOption4(){
+        drawBgImg('road-4.jpg')
+    }
+
+    function roadOption5(){
+        drawBgImg('road-1.jpg')
     }
     // roadOption3()
     ////////////////////////////////////////////////////
@@ -167,8 +182,14 @@ document.addEventListener('DOMContentLoaded', function(){
             }else if(counter === 1){
                 roadOption2()
                 counter = 2;
-            }else{
+            }else if(counter === 2){
                 roadOption3()
+                counter = 3;
+            }else if(counter === 3){
+                roadOption4()
+                counter = 4;
+            }else{
+                roadOption5()
              counter = 0;
             
         }
@@ -209,13 +230,16 @@ document.addEventListener('DOMContentLoaded', function(){
      
     
     function detectCrash() {
-        if(userCar.x < carOne.x + carOne.width 
-       && userCar.x + userCar.width > carOne.x
-       && userCar.y < carOne.y +carOne.height
-       && userCar.y + userCar.height > carOne.y){
-        gameStatus= 'gameOver';
-        return gameStatus;
-    }    
+        if(carOne.crazyDriver === false){
+            if(userCar.x < carOne.x + carOne.width 
+                && userCar.x + userCar.width > carOne.x
+                && userCar.y < carOne.y +carOne.height
+                && userCar.y + userCar.height > carOne.y){
+                 gameStatus= 'gameOver';
+                 return gameStatus;
+             }  
+        }
+     
     }
 
     function detectCrash2() {
@@ -237,18 +261,55 @@ document.addEventListener('DOMContentLoaded', function(){
             gameStatus= 'gameOver';
            
             return gameStatus;
-        } }   
-    pickAlane2()
+        } }  
+        
+        function detectCrashCrazyDrvier() {
+            if (carOne.crazyDriver === true){
+                if(userCar.x < carOne.x + carOne.width 
+                    && userCar.x + userCar.width > carOne.x
+                    && userCar.y < carOne.y +carOne.height
+                    && userCar.y > carOne.y + carOne.height - 3){
+                     gameStatus= 'gameOver';
+                    
+                     return gameStatus;
+                 } else {
+                     if(userCar.x <= carOne.x + carOne.width
+                     &&userCar.x + userCar.width > carOne.x + carOne.width  
+                    &&  userCar.y < carOne.y + carOne.height
+                    && userCar.y + userCar.height > carOne.y){
+                         lane = lane - 35;
                          
+                         console.log('BOOOOOM!!!')
+                     }else if(userCar.x + userCar.width >= carOne.x
+                        && userCar.x < carOne.x 
+                        &&  userCar.y < carOne.y + carOne.height
+                        && userCar.y + userCar.height > carOne.y){
+                         console.log('BOOM!!!')
+                         lane = lane + 35;
+                     }
+                     
+                 }
+            }
+           
+
+            }
+
+    pickAlane2()
+                    
     
     function rePaint(){
      ctx.clearRect(0, 0, fieldWidth, fieldHeight)
+     drawBgImg('road.jpeg')
     
+     
     //////////CAR RANGE PROPERTIES HERE!!!///
     
      if(gameStatus==="running"&&gameWon === false){
-        userCar.render() 
         background()
+        userCar.render() 
+        
+        
+
         car2();
         car3();
         if(carOneCounter < carRange){//indicates that the car is still moving in the feild and hasn't comleted it's path
@@ -362,7 +423,8 @@ function car3(){
      
      detectCrash();
      detectCrash2(); 
-     detectCrash3();   
+     detectCrash3(); 
+     detectCrashCrazyDrvier(); 
     }//closes rePaint function!!
     function startGame(){
         carOneColor = carOneColorDefault;
@@ -381,10 +443,13 @@ function car3(){
                 car3enter = false;
                 setTimeout(function(){ car2enter = true;carTwoCounter =0; }, 600);
                 setTimeout(function(){ car3enter = true;carThreeCounter=0 }, 1200);
+                pickAlane()
+                pickAlane2()
+                pickAlane3()
 
     }
     setInterval(rePaint, 1000/60);
-    setTimeout(function(){ car2enter = true; }, 600);
-    setTimeout(function(){ car3enter = true; }, 1200);
+    // setTimeout(function(){ car2enter = true; }, 600);
+    // setTimeout(function(){ car3enter = true; }, 1200);
     //////////////////////////////////
     })//closes DOMcontentload event
