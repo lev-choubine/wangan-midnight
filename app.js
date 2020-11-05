@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function(){
     let gameWon = false;
     let car2enter = false;
     let car3enter = false;
+    let carImage = 'compcar1.jpg';
+    const carImageDefault = 'compcar1.jpg'
+    const otherCarImages = 'compcar1.jpg'
 
 
 
@@ -73,17 +76,32 @@ document.addEventListener('DOMContentLoaded', function(){
     
     //Defining parameters for Cars
     class Car {
-        constructor(centerX, centerY,color, status) {
+        constructor(centerX, centerY,color, status, image) {
             this.x = centerX-20;
             this.y = centerY -15;
             this.width = 40;
-            this.height = 30;
+            this.height = 40;
             this.color = color;
             this.crazyDriver = status;
+            this.image = image;
          }render(){
             ctx.fillStyle=this.color;
-            ctx.
             ctx.fillRect(this.x, this.y, this.width, this.height)
+            /////////////////////////////////////////////////////
+            const x = this.x;
+            const y = this.y;
+            const w = this.width;
+            const h = this.height;
+
+            const img = new Image();
+            img.onload = draw;
+            img.src = this.image;
+
+            function draw() {
+            const ctx = document.querySelector('canvas').getContext('2d');
+            ctx.drawImage(img, x, y, w, h);
+            }
+            draw();
          }
     };  
     
@@ -115,9 +133,9 @@ document.addEventListener('DOMContentLoaded', function(){
         document.addEventListener('keyup', onKeyUp);
     
     //Let's make a user car
-    const userCar = new Car(150,274,"#BADA55", crazyStatus);
-    let userCarImage = new Image();
-    userCarImage.src = 'User-Car.jpg';
+    const userCar = new Car(150,274,"#BADA55", crazyStatus, 'user1car.jpg');
+   
+   
       
     
     
@@ -127,15 +145,6 @@ document.addEventListener('DOMContentLoaded', function(){
     
     /////////// Drawing and Definig Car Lanes /////////
     //Building a function that draws a single line
-    function drawLine(x,y1,y2){
-        
-        ctx.beginPath();
-        ctx.moveTo(x,y1);    
-        ctx.lineTo(x,y2);
-        ctx.strokeStyle = "#FFFFFF";
-        ctx.stroke();  
-    
-    }
     
     ////Compiling line variation for game background animation//////
 
@@ -218,6 +227,7 @@ document.addEventListener('DOMContentLoaded', function(){
     function crazyDriver2 () {
         crazyIndex = Math.floor(Math.random() * 5);
         if (crazyIndex === 4){
+            carImage ='crazy.jpg'
             carStep = Math.floor(carStep /2 );
             carOneColor = '#00FFFF'; 
             crazyStatus = true;
@@ -243,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function detectCrash2() {
+        
     if(userCar.x < carTwo.x + carTwo.width 
        && userCar.x + userCar.width > carTwo.x
        && userCar.y < carTwo.y +carTwo.height
@@ -268,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if(userCar.x < carOne.x + carOne.width 
                     && userCar.x + userCar.width > carOne.x
                     && userCar.y < carOne.y +carOne.height
-                    && userCar.y > carOne.y + carOne.height - 3){
+                    && userCar.y + userCar.height > carOne.y + carOne.height + 78){
                      gameStatus= 'gameOver';
                     
                      return gameStatus;
@@ -323,6 +334,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 carOneColor = carOneColorDefault;
                 carStep =carStepDefault;
                 crazyStatus = false;
+                carImage = carImageDefault;
             pickAlane();
             while(lane3 ===lane){
                 pickAlane()
@@ -351,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function car2(){
         if (car2enter === true){
-            carTwo = new Car(lane2,(carTwoCounter),'#006400', crazyStatus2);   
+            carTwo = new Car(lane2,(carTwoCounter),'#006400', crazyStatus2, otherCarImages);   
         carTwo.render()/////Second car renders here
         carTwoCounter = carTwoCounter + (carStepDefault -1);
        
@@ -371,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //////////////////////////////////////////////
 function car3(){
     if (car3enter === true){
-        carThree = new Car(lane3,(carThreeCounter),'#FFFF00', crazyStatus2);   
+        carThree = new Car(lane3,(carThreeCounter),'#FFFF00', crazyStatus2, otherCarImages);   
         carThree.render()/////Second car renders here
         carThreeCounter = carThreeCounter + (carStepDefault -1);
         if (carThreeCounter > carRange){
@@ -389,7 +401,7 @@ function car3(){
 
 
     function carMove(){
-       carOne = new Car(lane,(carOneCounter),carOneColor, crazyStatus);
+       carOne = new Car(lane,(carOneCounter),carOneColor, crazyStatus, carImage);
        
             carOne.render() 
             carOneCounter = carOneCounter + carStep
