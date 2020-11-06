@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let crazyStatus2 = false;
     let pointAccumulator = 0;
     const pointAccumulatorDefault = 0;
-    const setPointAmount = 3000;
+    const setPointAmount = 1500;
     const oneWin = 300;
     let gameWon = false;
     let car2enter = false;
@@ -52,23 +52,57 @@ document.addEventListener('DOMContentLoaded', function(){
     const carImageDefault = 'compcar1.jpg'
     const otherCarImages = 'compcar1.jpg'
     const crash ="url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f39715b0-a41b-401f-8482-85b57264b6f5/d27o4c6-7630c630-04e1-4161-8a51-b21e0f669c3f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZjM5NzE1YjAtYTQxYi00MDFmLTg0ODItODViNTcyNjRiNmY1XC9kMjdvNGM2LTc2MzBjNjMwLTA0ZTEtNDE2MS04YTUxLWIyMWUwZjY2OWMzZi5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.4r8Vo7zPBQ6pnAunFIgOjBmBa7MgghZygGZnprJqkrM')"
-
-
+    const driverQuoute = "“If everything seems under control, you're not going fast enough.”"
+    const greeting ='Speed has never killed anyone, suddenly becoming stationary… that’s what gets you. '
+    const win ="“It's hard to drive at the limit, but it's harder to know where the limits are.”"
+    let carHit = true;
+    let sugoi = false;
+    let paused = false;
     
     //////////////
+
+    document.addEventListener('keydown', function(e){
+        if(e.key==='p'){
+           paused=true;
+           gameStatus="gameOver";
+           if (paused===true){
+            document.getElementById('message').style.visibility="visible";
+            document.getElementById('blob').style.visibility="visible";
+            document.getElementById('blob').innerText="ガンバレ！！";
+            document.getElementById('cheers').style.visibility="visible";
+            document.getElementById('speil').innerText = "press 'R' to resume"
+            document.getElementById('instructions').style.visibility="visible";
+            document.getElementById('instructions2').style.visibility="visible";
+            document.getElementById('instructions').style.marginTop="-35%";
+            document.getElementById('instructions2').style.marginTop="45%";
+           }
+           
+        　　e.preventDefault();
+        }
+        
+    })
+
+    document.addEventListener('keydown', function(e){
+        if(e.key==='r'){
+            paused=false;
+            gameStatus="running";
+            e.preventDefault();
+        }
+        
+    })
+    
+
+    document.addEventListener('keydown', function(e){
+        if(e.key==='s'){
+            startGame();
+            e.preventDefault();
+        }
+        
+    })
+
     document.getElementById('terebi').addEventListener('click', function(e){
         startGame()
         e.preventDefault();
-    })
-        
-    
-
-    document.addEventListener('click', function(e){
-        if(e.key==='s'){
-            startGame();
-           
-        }
-        
     })
   
            
@@ -77,6 +111,8 @@ document.addEventListener('DOMContentLoaded', function(){
     document.addEventListener('keydown', function(e){
         if(e.key==='q'){
             gameStatus ='gameOver'
+            document.getElementById('speil').innerText = "Bye Bye Now"
+            document.getElementById('blob').innerText="マタネ!"
         }
         
     })
@@ -91,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function(){
             this.color = color;
             this.crazyDriver = status;
             this.image = image;
+            this.live = carHit;
          }render(){
             ctx.fillStyle=this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height)
@@ -255,7 +292,9 @@ document.addEventListener('DOMContentLoaded', function(){
                  gameStatus= 'gameOver';
                  document.getElementById('blob').innerText='ガシャンッ!';
                  document.getElementById('terebi').style.backgroundImage=crash
-                 setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
+                 document.getElementById('message').style.visibility="visible";
+                 document.getElementById('racequote').innerText = driverQuoute;
+                 document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
                  return gameStatus;
              }  
         }
@@ -271,7 +310,9 @@ document.addEventListener('DOMContentLoaded', function(){
         gameStatus= 'gameOver';
         document.getElementById('blob').innerText='ガシャンッ!';
         document.getElementById('terebi').style.backgroundImage=crash
-        setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
+        document.getElementById('message').style.visibility="visible";
+        document.getElementById('racequote').innerText = driverQuoute;
+        document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
         return gameStatus;
     }    
     }
@@ -284,7 +325,9 @@ document.addEventListener('DOMContentLoaded', function(){
             gameStatus= 'gameOver';
             document.getElementById('blob').innerText='ガシャンッ!';
             document.getElementById('terebi').style.backgroundImage=crash
-            setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
+            document.getElementById('message').style.visibility="visible";
+            document.getElementById('racequote').innerText = driverQuoute;
+            document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
             
             return gameStatus;
         } }  
@@ -298,26 +341,64 @@ document.addEventListener('DOMContentLoaded', function(){
                     && userCar.y + userCar.height > carOne.y + carOne.height){
                         document.getElementById('blob').innerText='ガシャンッ!!!!'; 
                         document.getElementById('terebi').style.backgroundImage=crash
-                        setTimeout(function(){ document.getElementById('message').style.visibility="visible"; }, 3000)
-                     gameStatus= 'gameOver';
+                        document.getElementById('message').style.visibility="visible";
+                        document.getElementById('racequote').innerText = driverQuoute;
+                        document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
+                        gameStatus= 'gameOver';
                     
                      return gameStatus;
                  } else {
                      if(userCar.x <= carOne.x + carOne.width
                      &&userCar.x + userCar.width > carOne.x + carOne.width  
                     &&  userCar.y < carOne.y + carOne.height
-                    && userCar.y + userCar.height > carOne.y){
+                    && userCar.y + userCar.height > carOne.y
+                    && carHit ===true ){
                          lane = lane - 35;
                          
-                         console.log('BOOOOOM!!!')
+                         
+                         
+                            console.log('BOOOOOM!!!')
+                            pointAccumulator = pointAccumulator + 300
+                            carHit = false;
+                            sugoi = true;
+                            console.log(carOne.live)
+                            document.getElementById('point-tracker').innerText = pointAccumulator;
+                            // setInterval( function(){document.getElementById('blob').innerText='スゴイ！！';}, 500)
+                            // setTimeout(  function (){document.getElementById('blob').innerText='スゴイ！！';}, 3000)
+                            // document.getElementById('blob').style.visibility="visible";
                      }else if(userCar.x + userCar.width >= carOne.x
                         && userCar.x < carOne.x 
                         &&  userCar.y < carOne.y + carOne.height
-                        && userCar.y + userCar.height > carOne.y){
-                         console.log('BOOM!!!')
+                        && userCar.y + userCar.height > carOne.y
+                        && carHit ===true){
+                          
+                                console.log('BOOM!!!')
+                                pointAccumulator = pointAccumulator + 300
+                                carHit = false;
+                                sugoi = true
+                                console.log(carOne.live)
+                              
+                                
+                     
+                            document.getElementById('point-tracker').innerText = pointAccumulator;
+                            // setInterval( function(){document.getElementById('blob').innerText='スゴイ！！';}, 500)
+                            // setTimeout(  function (){document.getElementById('blob').innerText='スゴイ！！';}, 3000)
+                            // document.getElementById('blob').style.visibility="visible";
+                            // document.getElementById('blob').style.visibility="visible";
+                         
                          lane = lane + 35;
                      }
-                     
+                    
+                 }
+                 if(sugoi===true&&gameWon === false){
+                    document.getElementById('blob').innerText='スゴイ！！';
+                    document.getElementById('blob').style.visibility="visible";
+                    document.getElementById('cheers').style.visibility="visible";
+                    document.getElementById('speil').innerText = "Double Points!"
+                    setTimeout(function (){document.getElementById('blob').visibility="hidden";document.getElementById('cheers').visibility="hidden"
+                     }, 5000)
+                  
+
                  }
             }
            
@@ -329,9 +410,15 @@ document.addEventListener('DOMContentLoaded', function(){
     
     function rePaint(){
         if(gameStatus === "running"){
+            document.getElementById('cheers').style.visibility='hidden';
           document.getElementById('blob').style.visibility='hidden';
+          document.getElementById('message').style.visibility="hidden";
+          document.getElementById('points').style.visibility="visible";
         }else{
             document.getElementById('blob').style.visibility='visible';
+            document.getElementById('cheers').style.visibility='visible';
+            document.getElementById('message').style.visibility="visible";
+            document.getElementById('points').style.visibility="hidden";
         }
      ctx.clearRect(0, 0, fieldWidth, fieldHeight)
      drawBgImg('road.jpeg')
@@ -339,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function(){
      
     //////////CAR RANGE PROPERTIES HERE!!!///
     
-     if(gameStatus==="running"&&gameWon === false){
+     if(gameStatus==="running"&&gameWon === false&&　paused===false){
         background()
         userCar.render() 
         
@@ -359,6 +446,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 carStep =carStepDefault;
                 crazyStatus = false;
                 carImage = carImageDefault;
+                carHit = true;
+                sugoi = false;
             pickAlane();
             while(lane3 ===lane){
                 pickAlane()
@@ -373,6 +462,17 @@ document.addEventListener('DOMContentLoaded', function(){
          carOne.render()
          carTwo.render()
          carThree.render()
+         if(paused === false){
+                    document.getElementById('message').style.visibility="visible";
+            　　　　 document.getElementById('racequote').innerText = win;
+           　　　　　 document.getElementById('blob').innerText='デキタ‼︎';
+                     document.getElementById('blob').style.visibility="visible";
+                     document.getElementById('cheers').style.visibility="visible";
+                     document.getElementById('points').style.visibility="hidden"
+                     document.getElementById('speil').innerText = "You Win!!!"; 
+
+         }
+         
         
          
          document.addEventListener('keydown', function(e){
@@ -434,18 +534,21 @@ function car3(){
             if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){
                 pointAccumulator = pointAccumulator + oneWin;
                 console.log(pointAccumulator);
+                document.getElementById('point-tracker').innerHTML=pointAccumulator;
                 if(pointAccumulator >= setPointAmount){
                         gameWon = true;
-                        document.addEventListener('keydown', function(e){
-                            if(e.key==='s'){
-                               
-                                console.log(gameStatus);
-                                gameWon = false;
-                                // car2enter= false;
-                                // car3enter= false;
-                                startGame();
-                            }})
+                        
                         console.log('YOU WIN!!!!!!!!')
+                         
+                document.addEventListener('keydown', function(e){
+                    if(e.key==='s'){
+                       
+                        console.log(gameStatus);
+                        gameWon = false;
+                        // car2enter= false;
+                        // car3enter= false;
+                        startGame();
+                    }})
                 }
                 console.log('CRAZY DRIVER POINTS!!!!!');
                
@@ -473,6 +576,7 @@ function car3(){
                 gameStatus="running";
                 carStep =carStepDefault;
                 crazyStatus = false;
+                carImage = carImageDefault;
                 pointAccumulator = pointAccumulatorDefault;
                 // clearInterval(rePaint, 1000/80);
                 car2enter = false;
@@ -483,6 +587,12 @@ function car3(){
                 pickAlane2()
                 pickAlane3()
                 document.getElementById('terebi').style.backgroundImage="url('old_tv_empty_screen.png')"
+                document.getElementById('point-tracker').innerText="000";
+                document.getElementById('instructions').style.visibility="hidden";
+                document.getElementById('instructions2').style.visibility="hidden";
+                
+                
+                
     }
     setInterval(rePaint, 1000/60);
     // setTimeout(function(){ car2enter = true; }, 600);

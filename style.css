@@ -15,7 +15,15 @@ canvas {
       margin-right: 12%;
   }
 
-  #game{
+  h3 {
+    font-family: 'Orbitron', sans-serif;font-family: 'Orbitron', sans-serif;
+  }
+#points {
+  margin-left: 20%;
+  margin-top: -10%;
+}
+  
+#game{
     margin-top: 10;
     left: 30;
     margin-bottom: 25%;
@@ -63,16 +71,8 @@ p {
   }
   
 
- #message {
-   visibility: hidden;
-   margin-top: -31%;
-   z-index: 1;
-   width: 30%;
-   background-image: url('tell.jpeg');
-   background-repeat: no-repeat;
-   background-size: cover;
-   text-align: center;
- } 
+
+ 
 
  #racequote {
   font-family: 'Orbitron', sans-serif;font-family: 'Orbitron', sans-serif;
@@ -94,4 +94,104 @@ p {
     99%{    color:transparent;  }
     100%{   color: rgb(255, 255, 255);    }
 }
+
+#message {
+  visibility: hidden;
+  margin-top: -31%;
+  z-index: 1;
+  width: 30%;
+  background-image: url('tell.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  transition: 2s;
+  
+}
+
+#instructions {
+  margin-top: -40%;
+  text-align: center;
+}
+
+#instructions2 {
+  margin-top: 45%;
+  text-align: center;
+}
+
+#cheers{
+  background-image: url('https://cdn2.vectorstock.com/i/1000x1000/00/01/manga-comics-radial-speed-lines-vector-1520001.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 20%;
+  height: 600%;
+  font-size: 40px;
+  margin-left: 70%;
+  margin-top: -15%;
+  visibility: hidden;
+}
+
+.slide {
+  /* for chrome and safari*/
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: slidein;
+
+  /*for firefox*/
+  -moz-animation-duration: 1s;
+  -moz-animation-name: slidein;
+
+    /* for opera*/
+  -o-animation-duration: 1s;
+  -o-animation-name: slidein;
+
+    /* Standard syntax*/
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+
+@-webkit-keyframes slidein {
+  from {
+      margin-left: 100%;
+      width: 100%;
+  }
+
+  to {
+      margin-left: 0%;
+      width: 100%;
+  }
+}
+
+@-moz-keyframes slidein {
+  from {
+      margin-left: 100%;
+      width: 100%;
+  }
+
+  to {
+      margin-left: 0%;
+      width: 100%;
+  }
+}
+@-o-keyframes slidein {
+  from {
+      margin-left: 100%;
+      width: 100%;
+  }
+
+  to {
+      margin-left: 0%;
+      width: 100%;
+  }
+}
+@keyframes slidein {
+  from {
+      margin-left: 100%;
+      width: 100%;
+  }
+
+  to {
+      margin-left: 0%;
+      width: 100%;
+}
+}
+
 
