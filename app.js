@@ -58,8 +58,25 @@ document.addEventListener('DOMContentLoaded', function(){
     let carHit = true;
     let sugoi = false;
     let paused = false;
-    
+
+    carCrashSound = new sound("carcrash.mp3")
+    let crashEvent = false;
     //////////////
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+          this.sound.play();
+        }
+        this.stop = function(){
+          this.sound.pause();
+        }
+      }
+      //////////////
 
     document.addEventListener('keydown', function(e){
         if(e.key==='p'){
@@ -295,6 +312,12 @@ document.addEventListener('DOMContentLoaded', function(){
                  document.getElementById('message').style.visibility="visible";
                  document.getElementById('racequote').innerText = driverQuoute;
                  document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
+                //  crashEvent = true;
+                //  if(crashEvent === true){
+                //     crashEvent = false; 
+                //     carCrashSound.play();  
+                //  }
+                
                  return gameStatus;
              }  
         }
@@ -313,6 +336,13 @@ document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('message').style.visibility="visible";
         document.getElementById('racequote').innerText = driverQuoute;
         document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
+        // crashEvent = true;
+        // if(crashEvent === true){
+        //     crashEvent = false; 
+        //     carCrashSound.play(); 
+        //  }
+       
+       
         return gameStatus;
     }    
     }
@@ -328,6 +358,15 @@ document.addEventListener('DOMContentLoaded', function(){
             document.getElementById('message').style.visibility="visible";
             document.getElementById('racequote').innerText = driverQuoute;
             document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
+            crashEvent = true;
+
+                //  if(crashEvent === true){
+                //     crashEvent = false; 
+                //     carCrashSound.play();
+                   
+                     
+                //  }
+                
             
             return gameStatus;
         } }  
@@ -345,7 +384,12 @@ document.addEventListener('DOMContentLoaded', function(){
                         document.getElementById('racequote').innerText = driverQuoute;
                         document.getElementById('speil').innerText = "Click on the TV to begin or hit 'S";
                         gameStatus= 'gameOver';
-                    
+                        crashEvent = true;
+                        if( crashEvent === true){
+                            crashEvent = false; 
+                            carCrashSound.play();   
+                        }
+                       
                      return gameStatus;
                  } else {
                      if(userCar.x <= carOne.x + carOne.width
@@ -363,9 +407,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             sugoi = true;
                             console.log(carOne.live)
                             document.getElementById('point-tracker').innerText = pointAccumulator;
-                            // setInterval( function(){document.getElementById('blob').innerText='スゴイ！！';}, 500)
-                            // setTimeout(  function (){document.getElementById('blob').innerText='スゴイ！！';}, 3000)
-                            // document.getElementById('blob').style.visibility="visible";
+                          
                      }else if(userCar.x + userCar.width >= carOne.x
                         && userCar.x < carOne.x 
                         &&  userCar.y < carOne.y + carOne.height
@@ -381,10 +423,6 @@ document.addEventListener('DOMContentLoaded', function(){
                                 
                      
                             document.getElementById('point-tracker').innerText = pointAccumulator;
-                            // setInterval( function(){document.getElementById('blob').innerText='スゴイ！！';}, 500)
-                            // setTimeout(  function (){document.getElementById('blob').innerText='スゴイ！！';}, 3000)
-                            // document.getElementById('blob').style.visibility="visible";
-                            // document.getElementById('blob').style.visibility="visible";
                          
                          lane = lane + 35;
                      }
@@ -462,6 +500,7 @@ document.addEventListener('DOMContentLoaded', function(){
          carOne.render()
          carTwo.render()
          carThree.render()
+         
          if(paused === false){
                     document.getElementById('message').style.visibility="visible";
             　　　　 document.getElementById('racequote').innerText = win;
