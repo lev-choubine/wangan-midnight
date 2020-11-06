@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function(){
     let gameWon = false;
     let car2enter = false;
     let car3enter = false;
-    let carImage = 'compcar1.jpg';
-    const carImageDefault = 'compcar1.jpg'
-    const otherCarImages = 'compcar1.jpg'
+    let carImage = 'NicePng_car-top-view-png_9645777.png';
+    const carImageDefault = 'NicePng_car-top-view-png_9645777.png'
+    const otherCarImages = 'NicePng_car-top-view-png_9645777.png'
     const crash ="url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f39715b0-a41b-401f-8482-85b57264b6f5/d27o4c6-7630c630-04e1-4161-8a51-b21e0f669c3f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZjM5NzE1YjAtYTQxYi00MDFmLTg0ODItODViNTcyNjRiNmY1XC9kMjdvNGM2LTc2MzBjNjMwLTA0ZTEtNDE2MS04YTUxLWIyMWUwZjY2OWMzZi5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.4r8Vo7zPBQ6pnAunFIgOjBmBa7MgghZygGZnprJqkrM')"
     const driverQuoute = "“If everything seems under control, you're not going fast enough.”"
     const greeting ='Speed has never killed anyone, suddenly becoming stationary… that’s what gets you. '
@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function(){
             this.image = image;
             this.live = carHit;
          }render(){
-            ctx.fillStyle=this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height)
+            // ctx.fillStyle=this.color;
+            // ctx.fillRect(this.x, this.y, this.width, this.height)
             /////////////////////////////////////////////////////
             const x = this.x;
             const y = this.y;
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function(){
         document.addEventListener('keyup', onKeyUp);
     
     //Let's make a user car
-    const userCar = new Car(150,274,"#BADA55", crazyStatus, 'user1car.jpg');
+    const userCar = new Car(150,274,"#BADA55", crazyStatus, 'pngkey.com-white-car-icon-png-7789675.png');
    
    
       
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function(){
     function crazyDriver2 () {
         crazyIndex = Math.floor(Math.random() * 5);
         if (crazyIndex === 4){
-            carImage ='crazy.jpg'
+            carImage ='kisspng-car-clip-art-bed-top-view-5ace3e1db48997.1233454315234657577395.png'
             carStep = Math.floor(carStep /2 );
             carOneColor = '#00FFFF'; 
             crazyStatus = true;

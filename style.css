@@ -6,6 +6,11 @@ canvas {
     height: auto;
   }
 
+  main {
+    max-width: 1260px;
+    margin: auto;
+  }
+
   h1 {
       font-size: 100%;
       margin-top: 10%;
@@ -24,7 +29,7 @@ canvas {
 }
   
 #game{
-    margin-top: 10;
+    margin-top: 0;
     left: 30;
     margin-bottom: 25%;
   }
@@ -36,12 +41,15 @@ canvas {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
   }
 
   #katakana {
-    position: relative;
+    position: absolute;
     text-align: center;
     margin: auto;
+    margin-top: -100%;
+    margin-left: -2%;
     width: 100%;
     height: auto;
   }
@@ -109,13 +117,15 @@ p {
 }
 
 #instructions {
-  margin-top: -40%;
+  /* margin-top: -40%; */
   text-align: center;
+  margin-bottom: 0;
 }
 
 #instructions2 {
-  margin-top: 45%;
+  margin-top: 12%;
   text-align: center;
+  background-color: rgb(0, 0, 0, .3);
 }
 
 #cheers{
@@ -194,4 +204,61 @@ p {
 }
 }
 
+@media only screen and (min-width: 900px) and (max-width:  1250px){
+ 
+  main{
+    width: 1030px;
+    margin: auto;
+  }
+    
 
+#cheers {
+  font-size: 20px;
+  margin-top: -10%;
+}
+
+#racequote {
+  padding: 15% 48% 15% 2%;
+}
+
+#message {
+  margin-top: -35%;
+}
+
+
+#instructions2 {
+  margin-top: 25%;
+  text-align: center;
+}
+
+#game {
+  width: 120%;
+  margin-left: -30%;
+  margin-top: 10%;
+}
+
+#katakana{
+ margin-left: -15%;
+
+}
+
+#points {
+  margin-top: -15%;
+}
+  
+}
+
+
+@media only screen and (min-width: 600px) and (max-width:  900px){
+  #terebi {
+    width: 100%;
+    height: auto;
+     background-image: none;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+}
+ #game {
+   width: 200%;
+   margin: auto;
+ }
