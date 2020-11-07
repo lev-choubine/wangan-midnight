@@ -1,28 +1,27 @@
 canvas {
-    /* background-image: url('../img/stone.png'); */
-    /* background-repeat: repeat; */
     background-color: #222;
     width: 100%;
     height: auto;
   }
 
-  main {
+main {
     max-width: 1260px;
     margin: auto;
-  }
+}
 
-  h1 {
+h1 {
       font-size: 100%;
       margin-top: 10%;
       text-align: right;
       font-family: 'Orbitron', sans-serif;font-family: 'Orbitron', sans-serif;
       color: rgb(228, 217, 122);
       margin-right: 12%;
-  }
+}
 
-  h3 {
+h3 {
     font-family: 'Orbitron', sans-serif;font-family: 'Orbitron', sans-serif;
-  }
+}
+
 #points {
   margin-left: 20%;
   margin-top: -10%;
@@ -32,17 +31,17 @@ canvas {
     margin-top: 0;
     left: 30;
     margin-bottom: 25%;
-  }
+}
 
  #terebi {
-   width: 90%;
-   height: auto;
+    width: 90%;
+    height: auto;
     background-image: url('old_tv_empty_screen.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     
-  }
+}
 
   #katakana {
     position: absolute;
@@ -52,16 +51,14 @@ canvas {
     margin-left: -2%;
     width: 100%;
     height: auto;
-  }
+}
 
   .container {
-    
     width: 30%;
     position: relative;
     text-align: center;
     margin: auto;
-    
-  }
+}
 
 p {
     
@@ -91,10 +88,9 @@ p {
     
 
   .blinking{
-    animation:blinkingText 0.5s infinite;
-   
-    
+    animation:blinkingText 0.5s infinite;  
 }
+
 @keyframes blinkingText{
     0%{     color: rgb(255, 255, 255);    }
     49%{    color: rgb(197, 189, 189); }
