@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded',  function(){
             if(playMuisc === 0){
                 playMusic = 1;
                 cityPop.play();
+                
             }
             e.preventDefault();
         } 

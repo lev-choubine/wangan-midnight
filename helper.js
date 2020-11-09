@@ -31,11 +31,14 @@
      }
 //////--------------------------UTILITY FUNCTIONS/-------------------/////////////
 // ----PICKS A LANE /-------
+
 function pickAlane () {
     let index = Math.floor(Math.random() * 4);
-    lane = laneDefault + (laneGap * index);
+    lane = laneChoices[index];
     crazyDriver2()
 }
+
+
 
 function pickAlane2 () {
     let index = Math.floor(Math.random() * 4);
@@ -323,7 +326,7 @@ function doublePoints(){
 //-------------BUMPING A CAR FROM THE RIGHT HAND SIDE---------//
 function rightBump(){
     lane = lane - 35;
-    console.log('BOOOOOM!!!')
+ 
     pointSounds.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
@@ -333,7 +336,7 @@ function rightBump(){
 //-------------BUMPING A CAR FROM THE LEFT HAND SIDE---------//
 function leftBump(){
     lane = lane + 35;
-    console.log('BOOM!!!')
+ 
     pointSounds.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;

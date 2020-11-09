@@ -52,6 +52,9 @@ let carImage = otherCarImages;
 
 //STEPS
 //lane properties
+const laneChoicesDefault = [38, 38+laneGap, 38+(laneGap*2), 38+ (laneGap*3)]
+let laneChoices = [38, 38+laneGap, 38+(laneGap*2), 38+ (laneGap*3)]
+
 let lane = 38;// sets property for car lane coordinates
 let lane2 = 38;
 let lane3 = 38;
@@ -85,7 +88,7 @@ class Car {
      }
 }; 
 
-function sound(src) {
+function sound(src, repeat) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
@@ -94,14 +97,21 @@ function sound(src) {
     document.body.appendChild(this.sound);
     this.play = function(){
       this.sound.play();
+      this.sound.addEventListener('ended', function() {
+          if(repeat === 'yes'){
+            this.currentTime = 0;
+            this.play();
+          }
+        
+    }, false);
     }
-    this.stop = function(){
-      this.sound.pause();
-    }
+    
   }
 
-  carCrashSound = new sound(carCrashPath);
-  cityPop = new sound(gameMusic);
-  pointSounds = new sound(pointSound);
+  
+
+  carCrashSound = new sound(carCrashPath, 'no');
+  cityPop = new sound(gameMusic, 'yes');
+  pointSounds = new sound(pointSound,'no');
 
 const userCar = new Car(150,274, crazyStatus, userCarImage);

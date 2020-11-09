@@ -14,5 +14,5 @@ const win ="“It's hard to drive at the limit, but it's harder to know where th
 const greeting ='Speed has never killed anyone, suddenly becoming stationary… that’s what gets you. ' 
 //sounds
 const carCrashPath ='carcrash.mp3';
-const gameMusic ='80sPlaylist.mp3';
+const gameMusic ='backgroundMusic.mp3';
 const pointSound ='pointsSound.mp3'
