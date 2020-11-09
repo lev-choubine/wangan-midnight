@@ -25,6 +25,14 @@ h3 {
 #points {
   margin-left: 20%;
   margin-top: -10%;
+  color: rgb(208, 255, 0);
+  
+} 
+
+#pointowa {
+  background-color: rgba(13, 23, 54, 0.541);
+  width: 18%;
+  
 }
   
 #game{
@@ -70,7 +78,7 @@ p {
     left: 32%;
     transform: translate(-30%, -30%);
     font-family: 'Orbitron', sans-serif;
-    background-color: rgba(49, 55, 59, .7);
+    background-color: rgba(209, 7, 142, 0.7);
     padding: auto;
     visibility: visible;
   }
@@ -240,7 +248,7 @@ p {
 
 #points {
   margin-top: -15%;
-  margin-left: 15]%;
+  margin-left: 15%;
 }
   
 }

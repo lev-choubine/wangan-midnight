@@ -1,15 +1,7 @@
-document.addEventListener('DOMContentLoaded', function(){ 
 
-    // ////////////Setting up a square canvas//////////
-    // const height =computedStyle.height
-    // const width = computedStyle.width
-    // //Setting up global variables for the game
-    // //FIELD PROPERTIES
-    // const linex1 = 75;//x coordinates of the first car lane
-    // const linex2 = 150;//x coordinates of the second car lane
-    // const linex3 = 225;//x coordinates of the third car lane
-    // const userRangeLeft = 19;//sets range for user movement
-    // const userRangeRight = 281;//set range for user movement
+
+document.addEventListener('DOMContentLoaded',  function(){ 
+
     document.addEventListener('keydown', function(e){
         if(e.key==='p'){
            paused=true;
@@ -34,7 +26,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
     document.addEventListener('keydown', function(e){
         if(e.key==='s'){
+            crashEvent = 0;
             startGame();
+            if(playMuisc === 0){
+                playMusic = 1;
+                cityPop.play();
+            }
             e.preventDefault();
         } 
     })
@@ -43,9 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
         startGame()
         e.preventDefault();
     })
-  
-           
-
+      
     document.addEventListener('keydown', function(e){
         if(e.key==='q'){
             gameStatus ='gameOver'
@@ -87,6 +82,9 @@ function onKeypress (e) {
 pickAlane2()
 
 function rePaint(){
+        
+        
+
         if(gameStatus === "running"){
             gameRunnig()
         }else{
@@ -100,7 +98,7 @@ function rePaint(){
         car2();
         car3();
         carRangeCheck();
-     }else{
+        }else{
         staticRender();
          document.addEventListener('keydown', function(e){
              if(e.key==='s'){

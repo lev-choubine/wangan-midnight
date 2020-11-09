@@ -98,6 +98,13 @@ function gameNotRunning(){
 
 // ----CAR CRASH /-------
 function carCrashPopUps() {
+    if(crashEvent === 0){
+        crashEvent = 1;
+        console.log('CRASH!!!!');
+        carCrashSound.play();
+    }
+
+   
     document.getElementById('blob').innerText='ガシャンッ!';
     document.getElementById('terebi').style.backgroundImage=crash
     document.getElementById('message').style.visibility="visible";
@@ -107,15 +114,18 @@ function carCrashPopUps() {
 
 // ----SUGOII /-------
 function sugoii(){
+   
     document.getElementById('blob').innerText='スゴイ！！';
     document.getElementById('blob').style.visibility="visible";
     document.getElementById('cheers').style.visibility="visible";
     document.getElementById('speil').innerText = "Double Points!"
     setTimeout(function (){document.getElementById('blob').visibility="hidden";document.getElementById('cheers').visibility="hidden"
+    
      }, 5000)
 }
 //--------undefined for now -----------//
 function winMessage() {
+    
     document.getElementById('message').style.visibility="visible";
     document.getElementById('racequote').innerText = win;
     document.getElementById('blob').innerText='デキタ‼︎';
@@ -150,6 +160,7 @@ function carMove(){
              if(pointAccumulator >= setPointAmount){
                      gameWon = true;
                      console.log('YOU WIN!!!!!!!!')
+                     pointSounds.play()
              document.addEventListener('keydown', function(e){
                  if(e.key==='s'){
                      console.log(gameStatus);
@@ -168,7 +179,7 @@ function car2(){
     if (car2enter === true){
         carTwo = new Car(lane2,(carTwoCounter),crazyStatus2, otherCarImages);   
     carTwo.render()/////Second car renders here
-    carTwoCounter = carTwoCounter + (carStepDefault -1);
+    carTwoCounter = carTwoCounter + (carStepDefault -2);
     if (carTwoCounter > carRange){
         carTwoCounter = 0;
            pickAlane2()
@@ -177,6 +188,8 @@ function car2(){
             }
         }
     return carTwoCounter;
+}else{
+    
 }        
 }
 //----------MOVE CAR3---------///
@@ -193,6 +206,8 @@ function car3(){
             }  
         }
     return carThreeCounter; 
+}else{
+   
 }
 }
 //------------------STATUS FUNCTIONS-----------///////
@@ -212,6 +227,7 @@ function startGame(){
     // clearInterval(rePaint, 1000/80);
     car2enter = false;
     car3enter = false;
+    
     setTimeout(function(){ car2enter = true;carTwoCounter =0; }, 600);
     setTimeout(function(){ car3enter = true;carThreeCounter=0 }, 1200);
     pickAlane()
@@ -229,11 +245,6 @@ function detectCrash() {
             && userCar.y + userCar.height > carOne.y){
              gameStatus= 'gameOver';
              carCrashPopUps()
-            //  crashEvent = true;
-            //  if(crashEvent === true){
-            //     crashEvent = false; 
-            //     carCrashSound.play();  
-            //  }
              return gameStatus;
         }  
     }
@@ -247,6 +258,7 @@ function detectCrash2() {
        && userCar.y + userCar.height > carTwo.y){
         gameStatus= 'gameOver';
         carCrashPopUps()
+      
         return gameStatus;
     }    
 }
@@ -259,6 +271,9 @@ function detectCrash3() {
        && userCar.y + userCar.height > carThree.y){
         gameStatus= 'gameOver';
         carCrashPopUps()
+       
+      
+        
         return gameStatus;
     } 
 }  
@@ -270,14 +285,17 @@ function detectCrashCrazyDrvier() {
             && userCar.y < carOne.y +carOne.height 
             && userCar.y > carOne.y +carOne.height + 38
             && userCar.y + userCar.height > carOne.y + carOne.height){
-                carCrashPopUps()
+                
+               
                 gameStatus= 'gameOver';
              return gameStatus;
          } else {
             doublePoints() 
+           
          }
          if(sugoi===true&&gameWon === false){
             sugoii()
+            
          }
     }
 }
@@ -298,6 +316,7 @@ function doublePoints(){
            && carHit ===true){
            leftBump()        
         }
+       
 }
 
 
@@ -305,6 +324,7 @@ function doublePoints(){
 function rightBump(){
     lane = lane - 35;
     console.log('BOOOOOM!!!')
+    pointSounds.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true;
@@ -314,6 +334,7 @@ function rightBump(){
 function leftBump(){
     lane = lane + 35;
     console.log('BOOM!!!')
+    pointSounds.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true

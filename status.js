@@ -14,7 +14,8 @@ let sugoi = false;
 let car2enter = false;
 let car3enter = false;
 let paused = false;
-let crashEvent = false;
+let playMuisc = 0;
+
 
 //COUNTERS///
 let counter = 0;//for animation
@@ -100,5 +101,7 @@ function sound(src) {
   }
 
   carCrashSound = new sound(carCrashPath);
+  cityPop = new sound(gameMusic);
+  pointSounds = new sound(pointSound);
 
 const userCar = new Car(150,274, crazyStatus, userCarImage);
