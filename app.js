@@ -27,16 +27,19 @@ document.addEventListener('DOMContentLoaded',  function(){
         if(e.key==='s'){
             crashEvent = 0;
             startGame();
+
+ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/MUSIC HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             if(playMuisc === 0){
                 playMusic = 1;
                 cityPop.play();
                 
             }
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            
             e.preventDefault();
         } 
     })
 
-    document.getElementById('terebi').addEventListener('click', function(e){
+    terebi.addEventListener('click', function(e){
         startGame()
         e.preventDefault();
     })
@@ -44,8 +47,8 @@ document.addEventListener('DOMContentLoaded',  function(){
     document.addEventListener('keydown', function(e){
         if(e.key==='q'){
             gameStatus ='gameOver'
-            document.getElementById('speil').innerText = "Bye Bye Now"
-            document.getElementById('blob').innerText="マタネ!"
+            speil.innerText = "Bye Bye Now"
+            blob.innerText="マタネ!"
         } 
     })
     //Defining parameters for Cars

@@ -68,38 +68,38 @@ function crazyDriver2 () {
 //////--------------------------RENDERING POP-UP ELEMENTS/-------------------/////////////
 //--------START GAME ----------//
 function startGameMessage(){
-    document.getElementById('terebi').style.backgroundImage="url('old_tv_empty_screen.png')"
-    document.getElementById('point-tracker').innerText="000";
-    document.getElementById('instructions').style.visibility="hidden";
-    document.getElementById('instructions2').style.visibility="hidden";   
+    terebi.style.backgroundImage="url('old_tv_empty_screen.png')"
+    pointTracker.innerText="000";
+    instructionsOneDisplay.style.visibility="hidden";
+    instructionsTwoDisplay.style.visibility="hidden";   
 }
 
 //----GAME PAUSED----//
 function gamePauseMessage(){
-            document.getElementById('message').style.visibility="visible";
-            document.getElementById('racequote').innerText=greeting;
-            document.getElementById('blob').style.visibility="visible";
-            document.getElementById('blob').innerText="ガンバレ！！";
-            document.getElementById('cheers').style.visibility="visible";
-            document.getElementById('speil').innerText = "press 'R' to resume"
-            document.getElementById('instructions').style.visibility="visible";
-            document.getElementById('instructions2').style.visibility="visible";
-            document.getElementById('instructions2').style.marginTop="25%";
+            mangaMessage.style.visibility="visible";
+            racerQuote.innerText=greeting;
+            blob.style.visibility="visible";
+            blob.innerText="ガンバレ！！";
+            cheers.style.visibility="visible";
+            speil.innerText = "press 'R' to resume"
+            instructionsOneDisplay.style.visibility="visible";
+            instructionsTwoDisplay.style.visibility="visible";
+            instructionsTwoDisplay.style.marginTop="25%";
 }
 
 //--------GAME RUNNING--------//
 function gameRunnig(){
-    document.getElementById('cheers').style.visibility='hidden';
-    document.getElementById('blob').style.visibility='hidden';
-    document.getElementById('message').style.visibility="hidden";
-    document.getElementById('points').style.visibility="visible";
+    cheers.style.visibility='hidden';
+    blob.style.visibility='hidden';
+    mangaMessage.style.visibility="hidden";
+    pointsDisplay.style.visibility="visible";
 }
 //--------GAME NOT RUNNING--------//
 function gameNotRunning(){
-    document.getElementById('blob').style.visibility='visible';
-    document.getElementById('cheers').style.visibility='visible';
-    document.getElementById('message').style.visibility="visible";
-    document.getElementById('points').style.visibility="hidden";
+    blob.style.visibility='visible';
+    cheers.style.visibility='visible';
+    mangaMessage.style.visibility="visible";
+    pointsDisplay.style.visibility="hidden";
 }
 
 // ----CAR CRASH /-------
@@ -108,34 +108,34 @@ function carCrashPopUps() {
         crashEvent = 1;
         carCrashSound.play();
     }
-    document.getElementById('blob').innerText='ガシャンッ!';
-    document.getElementById('terebi').style.backgroundImage=crash
-    document.getElementById('message').style.visibility="visible";
-    document.getElementById('racequote').innerText = driverQuoute;
-    document.getElementById('speil').innerText = "Click on the car to begin or hit 'S";
+    blob.innerText='ガシャンッ!';
+    terebi.style.backgroundImage=crash
+    mangaMessage.style.visibility="visible";
+    racerQuote.innerText = driverQuoute;
+    speil.innerText = "Click on the car to begin or hit 'S";
 }
 
 // ----SUGOII /-------
 function sugoii(){
    
-    document.getElementById('blob').innerText='スゴイ！！';
-    document.getElementById('blob').style.visibility="visible";
-    document.getElementById('cheers').style.visibility="visible";
-    document.getElementById('speil').innerText = "Double Points!"
-    setTimeout(function (){document.getElementById('blob').visibility="hidden";document.getElementById('cheers').visibility="hidden"
+    blob.innerText='スゴイ！！';
+    blob.style.visibility="visible";
+    cheers.style.visibility="visible";
+    speil.innerText = "Double Points!"
+    setTimeout(function (){blob.visibility="hidden";cheers.visibility="hidden"
     
      }, 5000)
 }
 //--------undefined for now -----------//
 function winMessage() {
     
-    document.getElementById('message').style.visibility="visible";
-    document.getElementById('racequote').innerText = win;
-    document.getElementById('blob').innerText='デキタ‼︎';
-    document.getElementById('blob').style.visibility="visible";
-    document.getElementById('cheers').style.visibility="visible";
-    document.getElementById('points').style.visibility="hidden"
-    document.getElementById('speil').innerText = "You Win!!!"; 
+    mangaMessage.style.visibility="visible";
+    racerQuote.innerText = win;
+    blob.innerText='デキタ‼︎';
+    blob.style.visibility="visible";
+    cheers.style.visibility="visible";
+    pointsDisplay.style.visibility="hidden"
+    speil.innerText = "You Win!!!"; 
 }
 
 function staticRender() {
@@ -159,7 +159,7 @@ function carMove(){
          carOneCounter = carOneCounter + carStep //moves the car in canvas
          if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){//checks for a grey car
              pointAccumulator = pointAccumulator + oneWin;//accumulates points if you hit the grey car
-             document.getElementById('point-tracker').innerHTML=pointAccumulator;//cnahges point value on your screen
+             pointTracker.innerHTML=pointAccumulator;//cnahges point value on your screen
              if(pointAccumulator >= setPointAmount){// wins the game once you accumulate  enough points
                      gameWon = true;
                      pointSounds.play()
@@ -329,7 +329,7 @@ function rightBump(){
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true;
-    document.getElementById('point-tracker').innerText = pointAccumulator;
+    pointTracker.innerText = pointAccumulator;
 }
 //-------------BUMPING A CAR FROM THE LEFT HAND SIDE---------//
 function leftBump(){
@@ -339,7 +339,7 @@ function leftBump(){
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true
-    document.getElementById('point-tracker').innerText = pointAccumulator;
+    pointTracker.innerText = pointAccumulator;
 }
 
 //--------RESETTING CRAZY DRIVER CAR TO CAR-------------------

@@ -32,7 +32,7 @@ h3 {
 
 #pointowa {
   background-color: rgba(13, 23, 54, 0.541);
-  width: 18%;
+  width: 14%;
   
 }
   
@@ -139,10 +139,10 @@ p {
   background-image: url('https://cdn2.vectorstock.com/i/1000x1000/00/01/manga-comics-radial-speed-lines-vector-1520001.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 20%;
+  width: 25%;
   height: 600%;
   font-size: 40px;
-  margin-left: 70%;
+  margin-left: 68%;
   margin-top: -15%;
   visibility: hidden;
 }
@@ -217,7 +217,9 @@ p {
     width: 950px;
     margin: auto;
   }
-    
+.container {
+  width:25%;
+}    
 
 #cheers {
   font-size: 20px;
@@ -234,7 +236,7 @@ p {
 
 
 #instructions2 {
-  margin-top: 20%;
+  margin-top: 24%;
   text-align: center;
 }
 
@@ -251,7 +253,9 @@ p {
 
 #points {
   margin-top: -15%;
-  margin-left: 15%;
+  margin-left: 21%;
+  width: 80%;
+
 }
   
 }

@@ -2,7 +2,7 @@
 # クレイジーヅライバー
 
 ## Concept
-A vintage styled collision game with Manga and Nostalgia elements. The user drives a car into oncoming traffic and must avoid collision with black cars on the highway. The user wins once a set amount of points is accumulated. A ‘grey oncoming car’ is randomly generated on the screen. The user accumulates points while passing the ‘grey car’ and gets double points if the ‘grey car’ is bumped of the road. The program generates pop-up elements with manga images, blinking Katakana messages followed by vintage game sound effects and quotes to respond to game events such as collisions, point accumulation, winning, while listening to some high quality City Pop!!!! <br /> [what is City Pop?](https://en.wikipedia.org/wiki/City_pop)
+A vintage styled collision game with Manga and Nostalgia elements. The user drives a car into oncoming traffic and must avoid collision with black cars on the highway. The user wins once a set amount of points is accumulated. A ‘grey oncoming car’ is randomly generated on the screen. The user accumulates points while passing the ‘grey car’ and gets double points if the ‘grey car’ is bumped of the road. The program generates pop-up elements with manga images, blinking Katakana messages followed by vintage game sound effects and racer quotes to respond to game events such as collisions, point accumulation, winning, while listening to some high quality City Pop!!!! <br /> [what is City Pop?](https://en.wikipedia.org/wiki/City_pop)
 
 
 
@@ -374,7 +374,7 @@ function sound(src, repeat) {
 ```
 ## Helper Functions
 
--  background animation
+Background animation
 ``` js
 // Declaring a function to render images onto hte HTML CANVAS
      function drawBgImg(img) {
