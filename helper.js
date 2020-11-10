@@ -2,7 +2,8 @@
 
 
 //////--------------------------BACKGROUND ANIMATION/-------------------/////////////
-     //Helper function that renders images onto the canvas
+     
+// Declaring a function to render images onto hte HTML CANVAS
      function drawBgImg(img) {
         let bgImg = new Image();
          bgImg.src = img;
@@ -10,7 +11,7 @@
      }   
      
     
-  
+ // Switching images in the background. Pulling them from a an array to enable animation. 
      function background(){
          if(counter===0){
             drawBgImg(roadImages[0]) 
@@ -29,8 +30,10 @@
               counter = 0;
          }
      }
-//////--------------------------UTILITY FUNCTIONS/-------------------/////////////
+//////--------------------------PICKING CAR LANES-------------------/////////////
+
 // ----PICKS A LANE /-------
+
 
 function pickAlane () {
     let index = Math.floor(Math.random() * 4);
@@ -59,10 +62,10 @@ function crazyDriver2 () {
         gameStatus = 'running';
     }
 }
-//--------------GENERATING SOUND-----------//
 
 
-//////--------------------------RENDER AND POP UP ELEMENTS/-------------------/////////////
+
+//////--------------------------RENDERING POP-UP ELEMENTS/-------------------/////////////
 //--------START GAME ----------//
 function startGameMessage(){
     document.getElementById('terebi').style.backgroundImage="url('old_tv_empty_screen.png')"
@@ -103,11 +106,8 @@ function gameNotRunning(){
 function carCrashPopUps() {
     if(crashEvent === 0){
         crashEvent = 1;
-        console.log('CRASH!!!!');
         carCrashSound.play();
     }
-
-   
     document.getElementById('blob').innerText='ガシャンッ!';
     document.getElementById('terebi').style.backgroundImage=crash
     document.getElementById('message').style.visibility="visible";
@@ -151,27 +151,25 @@ function staticRender() {
 
 
 
-//////---------------------------MOVEMENT FUNCTIONS-----------------//////////////
+//////---------------------------CAR MOVEMENT FUNCTIONS-----------------//////////////
 //---------MOVE CAR1--------//
 function carMove(){
-    carOne = new Car(lane,(carOneCounter), crazyStatus, carImage);
-         carOne.render() 
-         carOneCounter = carOneCounter + carStep
-         if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){
-             pointAccumulator = pointAccumulator + oneWin;
-             document.getElementById('point-tracker').innerHTML=pointAccumulator;
-             if(pointAccumulator >= setPointAmount){
+    carOne = new Car(lane,(carOneCounter), crazyStatus, carImage);//creates a carOne object
+         carOne.render() //draws the car
+         carOneCounter = carOneCounter + carStep //moves the car in canvas
+         if (carOne.crazyDriver === true && carOne.y ===(userCar.y+userCar.height)){//checks for a grey car
+             pointAccumulator = pointAccumulator + oneWin;//accumulates points if you hit the grey car
+             document.getElementById('point-tracker').innerHTML=pointAccumulator;//cnahges point value on your screen
+             if(pointAccumulator >= setPointAmount){// wins the game once you accumulate  enough points
                      gameWon = true;
-                     console.log('YOU WIN!!!!!!!!')
                      pointSounds.play()
              document.addEventListener('keydown', function(e){
-                 if(e.key==='s'){
+                 if(e.key==='s'){//enables you to start the game again
                      console.log(gameStatus);
                      gameWon = false;
                      startGame();
                  }})
              }
-             console.log('CRAZY DRIVER POINTS!!!!!');
          } 
          return carOneCounter;
     };
@@ -183,7 +181,7 @@ function car2(){
         carTwo = new Car(lane2,(carTwoCounter),crazyStatus2, otherCarImages);   
     carTwo.render()/////Second car renders here
     carTwoCounter = carTwoCounter + (carStepDefault -2);
-    if (carTwoCounter > carRange){
+    if (carTwoCounter > carRange){//car left canvas
         carTwoCounter = 0;
            pickAlane2()
            while(lane2 === lane){

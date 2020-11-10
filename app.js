@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded',  function(){ 
 
     document.addEventListener('keydown', function(e){
@@ -83,8 +82,6 @@ function onKeypress (e) {
 pickAlane2()
 
 function rePaint(){
-        
-        
 
         if(gameStatus === "running"){
             gameRunnig()

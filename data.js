@@ -2,6 +2,9 @@
 const crash ="url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f39715b0-a41b-401f-8482-85b57264b6f5/d27o4c6-7630c630-04e1-4161-8a51-b21e0f669c3f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZjM5NzE1YjAtYTQxYi00MDFmLTg0ODItODViNTcyNjRiNmY1XC9kMjdvNGM2LTc2MzBjNjMwLTA0ZTEtNDE2MS04YTUxLWIyMWUwZjY2OWMzZi5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.4r8Vo7zPBQ6pnAunFIgOjBmBa7MgghZygGZnprJqkrM')"
 //road images
 const roadImages = ['road-3.jpg','road-5.jpg','road-2.jpg','road-4.jpg','road-1.jpg']
+///
+//city image
+
 
 ///car images
 const userCarImage='pngkey.com-white-car-icon-png-7789675.png';

@@ -7,15 +7,16 @@ canvas {
 main {
     max-width: 1260px;
     margin: auto;
+  
 }
 
 h1 {
       font-size: 100%;
-      margin-top: 10%;
+      margin-top: 11%;
       text-align: right;
       font-family: 'Orbitron', sans-serif;font-family: 'Orbitron', sans-serif;
       color: rgb(228, 217, 122);
-      margin-right: 12%;
+      margin-right: 18%;
 }
 
 h3 {
@@ -38,15 +39,15 @@ h3 {
 #game{
     margin-top: 0;
     left: 30;
-    margin-bottom: 25%;
+    margin-bottom: 20%;
 }
 
  #terebi {
-    width: 90%;
+ 
     height: auto;
     background-image: url('old_tv_empty_screen.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 90%;
     background-position: center;
     
 }
@@ -121,15 +122,17 @@ p {
 }
 
 #instructions {
-  /* margin-top: -40%; */
+
   text-align: center;
   margin-bottom: 0;
+
 }
 
 #instructions2 {
   margin-top: 12%;
   text-align: center;
   background-color: rgb(0, 0, 0, .3);
+ 
 }
 
 #cheers{
