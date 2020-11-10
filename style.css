@@ -43,7 +43,7 @@ h3 {
 }
 
  #terebi {
- 
+    margin-top: -10%;
     height: auto;
     background-image: url('old_tv_empty_screen.png');
     background-repeat: no-repeat;
@@ -129,7 +129,7 @@ p {
 }
 
 #instructions2 {
-  margin-top: 12%;
+  margin-top: 20%;
   text-align: center;
   background-color: rgb(0, 0, 0, .3);
  
