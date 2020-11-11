@@ -23,7 +23,7 @@ let carOneCounter = 0;// sets counter to move oncoming car 1
 let carTwoCounter =0;//
 let carThreeCounter = 0;
 let pointAccumulator = 0;//accumulates game points
-let dancePosition = 568;
+
 
 //sets a counter to run road lane animation
 var line1 = document.getElementById("game");
@@ -108,8 +108,6 @@ function sound(src, repeat) {
   carCrashSound = new sound(carCrashPath, 'no');
   cityPop = new sound(gameMusic, 'yes');
   pointSounds = new sound(pointSound,'no');
-  playSugoii = new sound(sugoiii, 'no');
-  playBaka = new sound(baka, 'no');
 
 const userCar = new Car(150,274, crazyStatus, userCarImage);
 
@@ -124,4 +122,3 @@ const pointsDisplay = document.getElementById('points');
 const instructionsOneDisplay = document.getElementById('instructions');
 const instructionsTwoDisplay = document.getElementById('instructions2');
 const pointTracker = document.getElementById('point-tracker');
-const dance = document.getElementById('letsdance');

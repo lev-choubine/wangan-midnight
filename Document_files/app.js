@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',  function(){
         if(e.key==='s'){
             crashEvent = 0;
             startGame();
-            
+
  //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/MUSIC HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             if(playMuisc === 0){
                 playMusic = 1;

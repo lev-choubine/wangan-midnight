@@ -30,41 +30,6 @@
               counter = 0;
          }
      }
-
-
-////-----------------------DANCE-----------------------////////
-function dancing(){
-    document.getElementById('letsdance').style.visibility="visible";
-
-    playBaka.play();
-    const  interval = 160;
-    function hideGirl(){
-        document.getElementById('letsdance').style.visibility="hidden";   
-    }
-    function bakaaaa(){ dance.style.backgroundPosition=`-${dancePosition}px 0px`
-       
-    if(dancePosition < 2272){
-        
-        dancePosition = dancePosition + 568;
-    }else{
-        dancePosition = 568;
-    }   
-
-    }
-    let speak = setInterval(bakaaaa, interval)
-    function stopSpeak() {
-
-        clearInterval(speak)
-        hideGirl()
-    } 
-    setTimeout(stopSpeak, 1700);
-   
-
-    
-}
-
-
-
 //////--------------------------PICKING CAR LANES-------------------/////////////
 
 // ----PICKS A LANE /-------
@@ -142,7 +107,6 @@ function carCrashPopUps() {
     if(crashEvent === 0){
         crashEvent = 1;
         carCrashSound.play();
-        dancing();
     }
     blob.innerText='ガシャンッ!';
     terebi.style.backgroundImage=crash
@@ -362,7 +326,6 @@ function rightBump(){
     lane = lane - 35;
  
     pointSounds.play()
-    playSugoii.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true;
@@ -373,7 +336,6 @@ function leftBump(){
     lane = lane + 35;
  
     pointSounds.play()
-    playSugoii.play()
     pointAccumulator = pointAccumulator + oneWin
     carHit = false;
     sugoi = true

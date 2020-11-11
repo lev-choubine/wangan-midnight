@@ -69,22 +69,13 @@ h3 {
     margin: auto;
 }
 #letsdance {
-  visibility: hidden;
-  width:568px;
-  height: 863px;
+  
+    height: 80px;
+    width: 26px;
   background: 
-  url('96781.png') 0px 0px;
+  url('dance.png') 0px 0px;
 
 }
-
-#dancing {
-  margin-top: -40%;
-  position: relative;
-  visibility: hidden;
-
-}
-
-
 
 p {
     

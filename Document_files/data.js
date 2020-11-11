@@ -19,7 +19,3 @@ const greeting ='Speed has never killed anyone, suddenly becoming stationary… 
 const carCrashPath ='carcrash.mp3';
 const gameMusic ='backgroundMusic.mp3';
 const pointSound ='pointsSound.mp3'
-const sugoiii = 'sugoii.wav'
-const baka = 'baka.wav'
-const anime = document.getElementById('dancing')
-;
