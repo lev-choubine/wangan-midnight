@@ -1,5 +1,5 @@
-# Crazy-Driver <br/>
-# クレイジーヅライバー
+# Wangan Midnight<br/>
+# 湾岸竞速
 
 ## Repository
 https://lev-choubine.github.io.git/
